@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --midnight-blue: #0b1e4a;
+  --midnight-light: #122a6b;
+  --burgundy: #5c0f2b;
+  --burgundy-deep: #6b0f2b;
+  --blossom-pink: #ff6fa5;
+  --dusty-rose: #c67b8a;
+  --blush-pink: #f7c8d3;
+  --champagne-gold: #d4a95c;
+  --champagne-bright: #e8c87e;
+  --warm-cream: #fff8f0;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b1e4a;
+  color: #fff8f0;
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+}
+
+/* Dark midnight-blue glass panel with thin champagne-gold border */
+.glass-midnight {
+  background: linear-gradient(
+    145deg,
+    rgba(11, 30, 74, 0.72) 0%,
+    rgba(18, 42, 107, 0.56) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(212, 169, 92, 0.45);
+  box-shadow:
+    0 20px 60px rgba(7, 20, 54, 0.65),
+    inset 0 1px 0 rgba(232, 200, 126, 0.2);
+}
+
+/* Yes button: burgundy-to-rose gradient with soft gold glow */
+.btn-yes {
+  background: linear-gradient(135deg, #5c0f2b 0%, #8f2447 52%, #c67b8a 100%);
+  border: 1px solid rgba(232, 200, 126, 0.65);
+  box-shadow:
+    0 10px 30px rgba(92, 15, 43, 0.55),
+    0 0 22px rgba(212, 169, 92, 0.28);
+  transition:
+    transform 0.8s var(--ease-luxury),
+    box-shadow 0.8s var(--ease-luxury);
+}
+
+.btn-yes:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 14px 38px rgba(92, 15, 43, 0.7),
+    0 0 34px rgba(232, 200, 126, 0.55);
+}
+
+/* Transparent gold-outline button */
+.btn-gold-outline {
+  background: rgba(11, 30, 74, 0.35);
+  border: 1px solid rgba(212, 169, 92, 0.6);
+  transition:
+    transform 0.8s var(--ease-luxury),
+    box-shadow 0.8s var(--ease-luxury);
+}
+
+/* Golden halo ring behind characters */
+.golden-halo {
+  background: radial-gradient(
+    circle,
+    rgba(232, 200, 126, 0.36) 0%,
+    rgba(212, 169, 92, 0.16) 40%,
+    rgba(255, 111, 165, 0.08) 64%,
+    transparent 74%
+  );
+  filter: blur(8px);
+}
+
+/* Beating gold heart in preloader */
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 14px rgba(212, 169, 92, 0.45));
+  }
+  28% {
+    transform: scale(1.14);
+    filter: drop-shadow(0 0 28px rgba(232, 200, 126, 0.8));
+  }
+  45% {
+    transform: scale(1.03);
+  }
+  65% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 22px rgba(232, 200, 126, 0.65));
+  }
+}
+
+.animate-heartbeat {
+  animation: heartBeat 2.2s var(--ease-luxury) infinite;
+}
+
+/* Music equalizer bars */
+@keyframes eqPulse {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar {
+  transform-origin: bottom;
+  animation: eqPulse 1.1s ease-in-out infinite;
+}
+
+.eq-bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.eq-bar:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.eq-bar:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+/* Subtle float for polaroids & chips */
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(var(--float-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--float-rot, 0deg));
+  }
+}
+
+.animate-float-slow {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+/* Luxury text shimmer */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fff8f0 0%, #e8c87e 45%, #d4a95c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Slow Ken Burns living photo motion */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(-1.5%, -1.5%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 12s ease-in-out infinite;
+}
+
+/* Orbital champagne-gold ring rotation */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 24s linear infinite;
+}
