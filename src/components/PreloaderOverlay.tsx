@@ -5,12 +5,8 @@ interface PreloaderOverlayProps {
 }
 
 const ASSETS_TO_PRELOAD = [
-  './assets/audio/saathiya.mp3',
-  './assets/images/IMG_2938.jpeg',
   './assets/images/IMG_3143.jpeg',
-  './assets/images/IMG_5020.jpeg',
-  './assets/images/IMG_5204.jpeg',
-  './assets/images/IMG_5605.jpeg',
+  './assets/images/IMG_2938.jpeg',
 ]
 
 export const PreloaderOverlay: React.FC<PreloaderOverlayProps> = ({
@@ -32,24 +28,24 @@ export const PreloaderOverlay: React.FC<PreloaderOverlayProps> = ({
       if (completed >= ASSETS_TO_PRELOAD.length) {
         setTimeout(() => {
           if (mounted) setReady(true)
-        }, 350)
+        }, 200)
       }
     }
 
     ASSETS_TO_PRELOAD.forEach((url) => {
-      fetch(url)
-        .then((res) => res.blob())
-        .then(() => markOne())
-        .catch(() => markOne())
+      const img = new Image()
+      img.onload = markOne
+      img.onerror = markOne
+      img.src = url
     })
 
-    // Safety fallback so slow connections never block entry
+    // Unlock promptly so entry is never delayed on slow connections
     const safetyTimer = setTimeout(() => {
       if (mounted) {
         setProgress(100)
         setReady(true)
       }
-    }, 2200)
+    }, 800)
 
     return () => {
       mounted = false

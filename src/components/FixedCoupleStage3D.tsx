@@ -190,8 +190,8 @@ const CharacterRunner: React.FC<CharacterRunnerProps> = ({
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh
         mesh.frustumCulled = false
-        mesh.castShadow = true
-        mesh.receiveShadow = true
+        mesh.castShadow = false
+        mesh.receiveShadow = false
         if (mesh.material) {
           const mats = Array.isArray(mesh.material)
             ? mesh.material
@@ -586,16 +586,17 @@ export const FixedCoupleStage3D: React.FC<FixedCoupleStage3DProps> = ({
       <CanvasErrorBoundary>
         <Canvas
           camera={{ position: [0, 0, 6.2], fov: 38, near: 0.05, far: 100 }}
-          dpr={[1, 1.5]}
+          dpr={[1, 1.25]}
           gl={{
             alpha: true,
             antialias: true,
+            powerPreference: 'high-performance',
             toneMapping: THREE.ACESFilmicToneMapping,
             toneMappingExposure: 1.2,
           }}
           style={{ background: 'transparent' }}
         >
-          <Environment resolution={256}>
+          <Environment resolution={64}>
             <Lightformer
               form="ring"
               intensity={2.4}
@@ -642,7 +643,7 @@ export const FixedCoupleStage3D: React.FC<FixedCoupleStage3DProps> = ({
           <pointLight position={[0, 1.4, 3.5]} intensity={1.25} color="#fff8f0" />
 
           <Sparkles
-            count={activeSection === 'forever' ? 48 : 24}
+            count={activeSection === 'forever' ? 28 : 14}
             scale={[5.5, 3.4, 2]}
             size={activeSection === 'forever' ? 3.2 : 2.2}
             speed={0.45}

@@ -72,12 +72,11 @@ export const StoryCarouselSection: React.FC = () => {
     if (centreImgRef.current) {
       gsap.fromTo(
         centreImgRef.current,
-        { opacity: 0.3, scale: 0.92, filter: 'blur(8px)' },
+        { opacity: 0.25, scale: 0.94 },
         {
           opacity: 1,
           scale: 1,
-          filter: 'blur(0px)',
-          duration: 0.9,
+          duration: 0.85,
           ease: 'power3.out',
         }
       )
